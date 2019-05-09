@@ -29,6 +29,14 @@ public class AccountService {
         //throw new RuntimeException("发生异常了..");
 
         //遇到非检测异常,不回滚，除非加
-        throw new SQLException("发生异常了..");
+       // throw new SQLException("发生异常了..");
+
+
+        //谨慎：尽量不要在业务层捕捉异常并处理,回滚失效
+        try {
+            throw new SQLException("发生异常了..");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
