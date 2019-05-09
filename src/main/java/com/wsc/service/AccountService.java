@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.SQLException;
-
 @Service
 public class AccountService {
 
@@ -33,10 +31,13 @@ public class AccountService {
 
 
         //谨慎：尽量不要在业务层捕捉异常并处理,回滚失效
-        try {
+       /* try {
             throw new SQLException("发生异常了..");
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
+
+        //推荐：在业务层将异常抛出。在业务层统一抛出异常，然后在控制层统一处理。
+        throw new RuntimeException("发生异常了..");
     }
 }
